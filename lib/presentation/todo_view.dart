@@ -101,8 +101,9 @@ class TodoView extends StatelessWidget {
               HeaderWidget(
                 todos: todos,
               ),
-              ListView.builder(
+              ListView.separated(
                 shrinkWrap: true,
+                separatorBuilder: (context, index) => const Divider(),
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: todos.length,
                 itemBuilder: (context, index) {
@@ -117,7 +118,8 @@ class TodoView extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () => _showUpdateTodoBox(context, todo),
-                            icon: const Icon(CupertinoIcons.pen)),
+                            icon:
+                                const Icon(CupertinoIcons.square_pencil_fill)),
                         const SizedBox(
                           width: 5,
                         ),
