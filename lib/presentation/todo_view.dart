@@ -96,45 +96,50 @@ class TodoView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: BlocBuilder<TodoCubit, List<Todo>>(builder: (context, todos) {
-          return Column(
-            children: [
-              HeaderWidget(
-                todos: todos,
-              ),
-              ListView.separated(
-                shrinkWrap: true,
-                separatorBuilder: (context, index) => const Divider(),
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: todos.length,
-                itemBuilder: (context, index) {
-                  final todo = todos[index];
-                  return ListTile(
-                    title: Text(todo.text),
-                    leading: CupertinoCheckbox(
-                        value: todo.isCompleted,
-                        onChanged: (value) => todoCubit.toggleCompletion(todo)),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                            onPressed: () => _showUpdateTodoBox(context, todo),
-                            icon:
-                                const Icon(CupertinoIcons.square_pencil_fill)),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        IconButton(
-                            onPressed: () => todoCubit.deleteTodo(todo),
-                            icon: const Icon(
-                              CupertinoIcons.delete,
-                              color: Colors.red,
-                            ))
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ],
+          return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                HeaderWidget(
+                  todos: todos,
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  separatorBuilder: (context, index) => const Divider(),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: todos.length,
+                  itemBuilder: (context, index) {
+                    final todo = todos[index];
+                    return ListTile(
+                      title: Text(todo.text),
+                      leading: CupertinoCheckbox(
+                          value: todo.isCompleted,
+                          onChanged: (value) =>
+                              todoCubit.toggleCompletion(todo)),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                              onPressed: () =>
+                                  _showUpdateTodoBox(context, todo),
+                              icon: const Icon(
+                                  CupertinoIcons.square_pencil_fill)),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          IconButton(
+                              onPressed: () => todoCubit.deleteTodo(todo),
+                              icon: const Icon(
+                                CupertinoIcons.delete,
+                                color: Colors.red,
+                              ))
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           );
         }),
         floatingActionButton: FloatingActionButton(
