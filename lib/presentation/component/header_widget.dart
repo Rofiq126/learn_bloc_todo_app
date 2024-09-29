@@ -35,7 +35,10 @@ class HeaderWidget extends StatelessWidget {
               ),
               subtitle: Text(
                 newTodo.length.toString(),
-                style: const TextStyle(fontSize: 30, color: Colors.white),
+                style: const TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -51,7 +54,10 @@ class HeaderWidget extends StatelessWidget {
               ),
               subtitle: Text(
                 finishedTodo.length.toString(),
-                style: const TextStyle(fontSize: 30, color: Colors.white),
+                style: const TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700),
                 textAlign: TextAlign.center,
               ),
             ),
