@@ -39,7 +39,7 @@ class TodoCubit extends Cubit<List<Todo>> {
 
   //Update
   Future<void> updateTodo(String text, Todo todo) async {
-    //initiate new todo
+    //initiate update todo
     final updatedTodo = Todo(id: todo.id, text: text);
 
     //save new updated todo
